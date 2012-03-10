@@ -1,0 +1,17 @@
+<div class="share">
+  <h3>Share this{%if template contains "article" or template contains "blog"%} post{% elsif template contains "product" %} product{%endif%}.</h3>
+  {% capture shareurl %}{{ shop.url }}{%if template contains "article" or template contains "blog"%}{{ article.url }}{% elsif template contains "product" %}{{ product.url }}{%endif%}{% endcapture %}
+  <div class="share_row_1">
+    <ul>
+      <li><div class="fb-like" data-href="{{ shareurl }}" data-send="true" data-layout="button_count" data-width="129" data-show-faces="false"></div></li>
+      <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ shareurl }}" data-text="Check out HypeWipes!!">Tweet</a></li>
+    </ul>
+  </div>
+  <div class="share_row_2">
+    <ul>
+      <li><a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a></li>
+      <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2F{{shareurl}}&media=http%3A%2F%2F{{product.featured_image | product_img_url }}&description={{ product.description | strip_html  | replace: " ", "%"}}" class="pin-it-button" count-layout="horizontal">Pin It</a>  </li>
+      <li class="fancy"><a id="FancyButton" href="http://www.thefancy.com/fancyit?ItemURL={{ shareurl }}&Title={{ product.title | replace: " ", "%"}}&ImageURL={{product.featured_image | product_img_url}}">Fancy</a></li>
+    </ul>
+  </div>
+</div>

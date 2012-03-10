@@ -1,0 +1,69 @@
+
+		
+		<!-- PRIMARY -->
+		<div id="primary_column" class="{% if settings.side_blog == 'disabled' and settings.twitter_side == 'disabled' %} {%else%}col66 right{%endif%}">
+			<!-- START CONTENT -->
+			
+			<!-- START HEADING -->
+			<div class="hgroup">
+				<h2>{{ page.title | escape }}</h2>
+			</div>
+			<!-- END HEADING -->
+			
+			<div class="body">
+				{{ page.content }}
+			    			{% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="success-msg">Thanks for contacting us! We'll get back to you as soon as possible.</p>
+          {% endif %}
+
+          {% if form.errors %}
+          <p class="error-msg">
+            <ul class="error-list">
+            {% for field in form.errors %}
+              <li>{{ field }} - {{ form.errors.messages[field] }}</li>
+            {% endfor %}
+            </ul>
+          </p>
+          {% endif %} 
+
+          <ul id="contact-form">
+            <li class="clearfix type-text">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="contact[email]" />
+            </li> 
+            <li class="clearfix type-text">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="email" name="contact[email]" />
+            </li>   
+            <li class="clearfix type-textarea">
+              <label for="message">Message</label>
+              <textarea id="message" name="contact[body]"></textarea>
+            </li>
+            <li class="clearfix type-submit">
+              <input type="submit" class="submit btn contact_btn" value="Send" />
+            </li>
+          </ul>
+        {% endform %}
+    		    
+			</div>
+		
+		</div>
+		<!-- / PRIMARY -->
+		
+		<!-- ASIDE -->
+		<div id="home_side" class="col33 left">
+			{% if template != 'index' and settings.side_blog == 'enabled' %}
+				{% if settings.side_blog_excerpt == 'excerpt' %}
+					{% include "recent_posts" with "body" %}
+				{% else %}
+				{% include "recent_posts" %}
+				{% endif %}
+			{%endif%}		
+			
+			
+			<div class="fb-like-box" data-href="http://www.facebook.com/hypewipes" data-width="292" data-show-faces="true" data-stream="true" data-header="false"></div>
+			
+		</div>
+		<!-- /  ASIDE -->
